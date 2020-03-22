@@ -1,13 +1,14 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<view class="weui-search-bar" bindtap='searchBarClick'>
+  <view class="weui-search-bar__form">
+    <icon class="weui-icon-search" type="search" size="14"></icon>
+    <text class="weui-search-bar__text">搜索</text>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+</view>
+<view class='banner-box'>
+  <swiper indicator-dots="true" autoplay='true' interval='4000' duration='500' circular='true'>
+    <swiper-item wx:for="{{bannerList}}" wx:key="index">
+      <image class='banner-image' src="{{item.imagePath}}" data-url='{{item.url}}' bindtap='onItemClick'></image>
+    </swiper-item>
+  </swiper>
 </view>
