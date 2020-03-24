@@ -12,7 +12,6 @@
   <view class='list-item-name' style='flex:1;'>我的收藏</view>
   <image class='list-item-img'  src='../../images/ic_arrow.png'></image>
 </view>
-<view class='line-box'><view class='bottom-line'></view></view>
 <view class='list-item' bindtap='onItemClick' data-item-type='1'>
   <image class='list-item-img' src='../../images/ic_knowledge_system.png'></image>
   <view class='list-item-name' style='flex:1;'>知识体系</view>

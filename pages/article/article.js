@@ -1,18 +1,63 @@
 // pages/article/article.js
+
+import chaptersConfig from "../../config/chapters.js";
+import api from "../../api/api.js";
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    chapters: [],
+    chapters: [],
+    articleList: [],
+    currentTab: 0,
+    scrollWidth: 0,
+    page: 1,
+    pageCount: 1,
+    isLoadingMore: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      chapters:chaptersConfig.chapters
+    })
+    this.getArticle(this.data.page)
+  },
 
+  getArticle(page) {
+    let userId = this.data.chapters[this.data.currentTab].id;
+    api.IGetWXArticle(userId, page)
+      .then(res => {
+        for (let item of res.data.datas) {
+          item.headTetx = item.author.substring(0, 1)
+        }
+        wx.stopPullDownRefresh()
+        this.setData({
+          articleList: this.data.articleList.concat(res.data.datas),
+          page: page,
+          pageCount: res.data.pageCount,
+          isLoadingMore: false,
+        })
+      })
+      .catch(e => {
+
+      })
+  },
+
+  onTabClick(event){
+    console.log(event)
+    let data = event.currentTarget.dataset;
+    this.setData({
+      currentTab: data.index,
+      articleList: []
+    })
+    this.getArticle(1)
   },
 
   /**

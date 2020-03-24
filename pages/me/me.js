@@ -62,5 +62,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  onItemClick(){
+    console.log("点了我")
   }
+
+
 })
