@@ -1,2 +1,32 @@
 <!--pages/me/me.wxml-->
-<text>pages/me/me.wxml</text>
+<!-- 我的 -->
+
+<view class="UCenter-bg">
+  <image src="/images/head.jpg" class="png" style="border-radius: 50%;margin-bottom: 10rpx;" mode="widthFix" bindtap='login'></image>
+
+  <image src="https://www.mtjsoft.cn/media/wanandroid/wave.gif" mode="scaleToFill" class="gif-wave"></image>
+</view>
+
+<view class='list-item' bindtap='onItemClick' data-item-type='0'>
+  <image class='list-item-img' src='../../images/collect.png'></image>
+  <view class='list-item-name' style='flex:1;'>我的收藏</view>
+  <image class='list-item-img'  src='../../images/ic_arrow.png'></image>
+</view>
+<view class='line-box'><view class='bottom-line'></view></view>
+<view class='list-item' bindtap='onItemClick' data-item-type='1'>
+  <image class='list-item-img' src='../../images/ic_knowledge_system.png'></image>
+  <view class='list-item-name' style='flex:1;'>知识体系</view>
+  <image class='list-item-img'  src='../../images/ic_arrow.png'></image>
+</view>
+<view class='line-box'><view class='bottom-line'></view></view>
+<view class='list-item' bindtap='onItemClick' data-item-type='2'>
+  <image class='list-item-img' src='../../images/ic_todo.png'></image>
+  <view class='list-item-name' style='flex:1;'>待办清单</view>
+  <image class='list-item-img'  src='../../images/ic_arrow.png'></image>
+</view>
+
+<view class='list-item top-20' bindtap='onItemClick' data-item-type='3'>
+  <image class='list-item-img' src='../../images/about.png'></image>
+  <view class='list-item-name' style='flex:1;'>关于我们</view>
+  <image class='list-item-img'  src='../../images/ic_arrow.png'></image>
+</view>

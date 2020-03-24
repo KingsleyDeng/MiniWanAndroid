@@ -21,6 +21,7 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WanAndroid",
     "navigationBarTextStyle": "black"
+
   },
   "tabBar": {
     "list": [
@@ -47,6 +48,7 @@
         "text": "我的",
         "iconPath": "/images/ic_me.png",
         "selectedIconPath": "/images/ic_me_fill.png"
+        
       }
     ]
   },
