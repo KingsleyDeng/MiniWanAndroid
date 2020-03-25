@@ -1,19 +1,41 @@
 // pages/tree/tree.js
+import api from "../../api/api.js";
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+      treeList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getTree()
   },
+
+  getTree() {
+    api.IGetTree({})
+      .then(res => {
+        this.setData({
+          treeList: res.data
+        })
+      })
+      .catch(e => {
+
+      })
+  },
+
+  onHotKeyClick(event) {
+    let key = event.currentTarget.dataset.key;
+    let name = event.currentTarget.dataset.name;
+    wx.navigateTo({
+      url: '/pages/treelist/treelist?cid=' + key + "&name=" + name,
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
