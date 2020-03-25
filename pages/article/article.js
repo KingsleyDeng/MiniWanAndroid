@@ -11,7 +11,6 @@ Page({
    */
   data: {
     chapters: [],
-    chapters: [],
     articleList: [],
     currentTab: 0,
     scrollWidth: 0,

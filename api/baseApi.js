@@ -2,7 +2,7 @@
 import interfaces from "./interfaces.js";
 let request = (url, data, type) => new Promise((resolve, reject) => {
   wx.request({
-    url: 'http://www.wanandroid.com' + url,
+    url: 'https://www.wanandroid.com' + url,
     data: data,
     method: type, // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
     header: {
