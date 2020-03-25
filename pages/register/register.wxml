@@ -1,2 +1,7 @@
 <!--pages/register/register.wxml-->
-<text>pages/register/register.wxml</text>
+<view class='login'>
+   <input class='text-input' placeholder="请输入用户名" value='{{username}}' bindinput='onNameChange'></input>
+   <input class='text-input' placeholder="请输入密码" value='{{password}}' password="true" bindinput='onPwdChange'></input>
+   <input class='text-input' placeholder="请确认密码" value='{{repassword}}' password="true" bindinput='onRePwdChange'></input>
+   <view class='login-btn' bindtap='register'>注册</view>
+</view>

@@ -1,2 +1,2 @@
 <!--pages/web/index.wxml-->
-<text>pages/web/index.wxml</text>
+<web-view src="{{pageurl}}"></web-view>
