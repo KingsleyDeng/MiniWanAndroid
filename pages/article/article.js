@@ -99,7 +99,13 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (this.data.pageCount <= this.data.page || this.data.isLoadingMore) {
+      return false;
+    }
+    this.setData({
+      isLoadingMore: true,
+    })
+    this.getArticle(this.data.page + 1)
   },
 
   /**
