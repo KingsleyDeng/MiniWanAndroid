@@ -1,66 +1,130 @@
 // pages/collect/collect.js
+
+import api from "../../api/api.js";
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    articleList: [],
+    page: 1,
+    pageCount: 0,
+    isHideLoadMore: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function(options) {
+    this.getCollectList(1);
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
+  onReachBottom: function() {
+    if (this.data.pageCount <= this.data.page || this.data.isLoadingMore) {
+      return false;
+    }
+    this.setData({
+      isHideLoadMore: true,
+    })
+    this.getCollectList(this.data.page + 1)
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
+  },
+
+  getCollectList(page) {
+    api.IGetCollectList(page)
+      .then(res => {
+        for (let item of res.data.datas) {
+          item.headTetx = item.author.substring(0, 1);
+          item.collect = true;
+        }
+        wx.stopPullDownRefresh()
+        this.setData({
+          articleList: this.data.articleList.concat(res.data.datas),
+          page: page,
+          pageCount: res.data.pageCount,
+          isHideLoadMore: false,
+        })
+      })
+      .catch(e => {
+
+      })
+  },
+
+  onItemClick(event) {
+    let url = event.currentTarget.dataset.url;
+    wx.navigateTo({
+      url: "/pages/web/index?url=" + encodeURIComponent(url)
+    })
+  },
+
+  collectClick(event) {
+    let id = event.currentTarget.dataset.id;
+    let zan = event.currentTarget.dataset.zan;
+    let index = event.currentTarget.dataset.index;
+    let originId = event.currentTarget.dataset.originId;
+    if (zan) {
+      api.IPostArticleMyUnCollect(id, {
+          originId: originId
+        })
+        .then(res => {
+          this.data.articleList.splice(index, 1)
+          this.setData({
+            articleList: this.data.articleList
+          })
+          wx.showToast({
+            title: '取消收藏',
+          })
+        })
+        .catch(e => {
+
+        })
+    }
   }
+
 })

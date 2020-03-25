@@ -105,6 +105,51 @@ Page({
     this.getProject(this.data.page + 1)
   },
 
+  // 收藏事件
+  collectClick(event){
+    // 判断用户是否登录
+    if (!app.isLogin()) {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+      return false;
+    }
+
+    let id = event.currentTarget.dataset.id;
+    let zan = event.currentTarget.dataset.zan;
+    let index = event.currentTarget.dataset.index;
+    if (!zan) {
+      api.IPostCollect(id)
+        .then(res => {
+          this.data.projectList[index].collect = true;
+          this.setData({
+            projectList: this.data.projectList
+          })
+          wx.showToast({
+            title: '收藏成功',
+          })
+        })
+        .catch(e => {
+
+        })
+    } else {
+      api.IPostArticleUnCollect(id)
+        .then(res => {
+          this.data.projectList[index].collect = false;
+          this.setData({
+            projectList: this.data.projectList
+          })
+          wx.showToast({
+            title: '取消收藏',
+          })
+        })
+        .catch(e => {
+
+        })
+    }
+
+  },
+
   /**
    * 用户点击右上角分享
    */

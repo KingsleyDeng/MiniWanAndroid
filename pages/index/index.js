@@ -90,6 +90,7 @@ Page({
     })
   },
 
+  // 收藏事件
   collectClick(event) {
     if (!app.isLogin()) {
       wx.navigateTo({
